@@ -3,7 +3,7 @@
  * Utility for linking CPT items to taxonomy items.
  */
 
-namespace HardG\CPTTax;
+namespace HardG\CptTax;
 
 /**
  * Utility class for linking each post of a CPT to a corresponding taxonomy item.

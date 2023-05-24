@@ -3,7 +3,7 @@
  * Registry for linked Custom Post Types and taxonomies
  */
 
-namespace HardG\CPTTax;
+namespace HardG\CptTax;
 
 use \Exception;
 
