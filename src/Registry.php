@@ -59,9 +59,8 @@ class Registry {
 			return false;
 		}
 
-		$registry->links[ $key ] = new CPTTax( $post_type, $taxonomy );
+		$registry->links[ $key ] = new CptTaxLink( $post_type, $taxonomy );
 
 		return true;
 	}
-
 }

@@ -8,7 +8,7 @@ namespace HardG\CPTTax;
 /**
  * Utility class for linking each post of a CPT to a corresponding taxonomy item.
  */
-class CPTTax {
+class CptTaxLink {
 	/**
 	 * Post type name.
 	 *
