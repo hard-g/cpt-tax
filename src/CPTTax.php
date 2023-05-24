@@ -78,7 +78,7 @@ class CPTTax {
 
 		if ( $create ) {
 			// In case of empties.
-			$term_name = ! empty( $post->post_title ) ? $post->post_title : 'Profile ' . $post->ID;
+			$term_name = ! empty( $post->post_title ) ? $post->post_title : sprintf( 'Term corresponding to post %s', $post->ID );
 
 			$term = wp_insert_term(
 				$term_name,
