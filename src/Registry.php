@@ -5,6 +5,8 @@
 
 namespace HardG\CPTTax;
 
+use \Exception;
+
 /**
  * Registry.
  */
