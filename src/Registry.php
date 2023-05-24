@@ -36,9 +36,13 @@ class Registry {
 	/**
 	 * Registers a linked CPT and taxonomy.
 	 *
+	 * @param string $key Unique key used to reference this link.
+	 * @param string $post_type Post type name.
+	 * @param string $taxonomy  Taxonomy name.
+	 *
 	 * @return boolean True on success. False if it already is registered.
 	 */
-	public static function register( $post_type, $taxonomy ) {
+	public static function register( $key, $post_type, $taxonomy ) {
 		if ( ! function_exists( '\post_type_exists' ) ) {
 			throw new Exception( 'WordPress must be installed to use this library.' );
 		}
@@ -53,8 +57,6 @@ class Registry {
 
 		$registry = self::get_instance();
 
-		$key = $post_type . '-' . $taxonomy;
-
 		if ( ! empty( $registry->links[ $key ] ) ) {
 			return false;
 		}
@@ -62,5 +64,45 @@ class Registry {
 		$registry->links[ $key ] = new CptTaxLink( $post_type, $taxonomy );
 
 		return true;
+	}
+
+	/**
+	 * Gets the post-type/taxonomy link corresponding to a key.
+	 *
+	 * @param string $key Unique key.
+	 * @return \HardG\CptTax\CptTax
+	 */
+	protected static function get_link( $key ) {
+		$registry = self::get_instance();
+
+		if ( ! empty( $registry->links[ $key ] ) ) {
+			throw Exception( sprintf( 'CPT-Taxonomy link with the following key has not been registered: %s', $key ) );
+		}
+
+		return $registry->links[ $key ];
+	}
+
+	/**
+	 * Gets the term ID corresponding to a post ID.
+	 *
+	 * @param $key     Unique key for the post-type/taxonomy link.
+	 * @param $post_id ID of the post.
+	 * @return int
+	 */
+	public static function get_term_id_for_post_id( $key, $post_id ) {
+		$link = self::get_link( $key );
+		return $link->get_term_id_for_post_id( $post_id );
+	}
+
+	/**
+	 * Gets the post ID corresponding to a term ID.
+	 *
+	 * @param $key     Unique key for the post-type/taxonomy link.
+	 * @param $term_id ID of the term.
+	 * @return int
+	 */
+	public static function get_post_id_for_term_id( $key, $post_id ) {
+		$link = self::get_link( $key );
+		return $link->get_post_id_for_term_id( $post_id );
 	}
 }
