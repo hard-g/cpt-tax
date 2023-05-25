@@ -72,7 +72,7 @@ class Registry {
 	 * @param string $key Unique key.
 	 * @return \HardG\CptTax\CptTax
 	 */
-	protected static function get_link( $key ) {
+	public static function get_link( $key ) {
 		$registry = self::get_instance();
 
 		if ( ! empty( $registry->links[ $key ] ) ) {
