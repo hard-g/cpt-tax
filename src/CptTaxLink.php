@@ -38,6 +38,24 @@ class CptTaxLink {
 	}
 
 	/**
+	 * Gets the name of the post type associated with this link.
+	 *
+	 * @return string
+	 */
+	public function get_post_type() {
+		return $this->post_type;
+	}
+
+	/**
+	 * Gets the name of the taxonomy associated with this link.
+	 *
+	 * @return string
+	 */
+	public function get_taxonomy() {
+		return $this->taxonomy;
+	}
+
+	/**
 	 * 'save_post' callback that creates a tax term, if necessary.
 	 *
 	 * @param int      $post_id ID of the post being edited.
