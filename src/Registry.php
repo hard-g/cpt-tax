@@ -74,12 +74,21 @@ class Registry {
 	 */
 	public static function get_link( $key ) {
 		$registry = self::get_instance();
+		return $registry->get_link_by_key( $key );
+	}
 
-		if ( ! empty( $registry->links[ $key ] ) ) {
+	/**
+	 * Gets the post-type/taxonomy link corresponding to a key.
+	 *
+	 * @param string $key Unique key.
+	 * @return \HardG\CptTax\CptTax
+	 */
+	public function get_link_by_key( $key ) {
+		if ( empty( $this->links[ $key ] ) ) {
 			throw Exception( sprintf( 'CPT-Taxonomy link with the following key has not been registered: %s', $key ) );
 		}
 
-		return $registry->links[ $key ];
+		return $this->links[ $key ];
 	}
 
 	/**
